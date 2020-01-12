@@ -10,8 +10,7 @@
         "types": [
             "cypress"
         ],
-        "allowSyntheticDefaultImports": true,
-        "skipLibCheck": true
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "**/*.ts"
