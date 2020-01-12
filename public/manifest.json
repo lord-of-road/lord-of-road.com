@@ -1,0 +1,9 @@
+{
+    "name": "Lord of Road",
+    "short_name": "Lord of Road",
+    "icons": [],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFBF00"
+}
