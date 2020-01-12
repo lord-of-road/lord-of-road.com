@@ -3,6 +3,7 @@ on:
   push:
     paths:
     - '*'
+    - '**/*'
     - '.github/workflows/*'
     - '!*.md'
 jobs:
