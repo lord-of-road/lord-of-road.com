@@ -16,7 +16,6 @@ jobs:
         node-version: '10.16'
     - name: Build
       run: |
-        cd client
         yarn
         NODE_ENV=production yarn build
     - name: Publish staging
@@ -25,11 +24,9 @@ jobs:
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
         environment: 'staging'
-        workingDirectory: 'client'
     - name: Publish production
       if: contains(github.ref, '/master')
       uses: cloudflare/wrangler-action@1.1.0
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
         environment: 'production'
-        workingDirectory: 'client'
