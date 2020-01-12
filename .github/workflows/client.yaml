@@ -1,0 +1,35 @@
+name: Build and deploy to Github Pages
+on:
+  push:
+    paths:
+    - '*'
+    - '.github/workflows/*'
+    - '!*.md'
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.16'
+    - name: Build
+      run: |
+        cd client
+        yarn
+        NODE_ENV=production yarn build
+    - name: Publish staging
+      if: contains(github.ref, '/dev')
+      uses: cloudflare/wrangler-action@1.1.0
+      with:
+        apiToken: ${{ secrets.CF_API_TOKEN }}
+        environment: 'staging'
+        workingDirectory: 'client'
+    - name: Publish production
+      if: contains(github.ref, '/master')
+      uses: cloudflare/wrangler-action@1.1.0
+      with:
+        apiToken: ${{ secrets.CF_API_TOKEN }}
+        environment: 'production'
+        workingDirectory: 'client'

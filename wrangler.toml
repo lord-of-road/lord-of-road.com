@@ -1,0 +1,17 @@
+name = "lord_of_road"
+type = "webpack"
+account_id = "82fd74a54708ed514403791b191174b5"
+zone_id = "63cf6c33137aff117d4d0c6b33f1b03e"
+workers_dev = true
+
+[site]
+bucket = "./dist"
+entry-point = "worker"
+
+[env.staging]
+name = "lord_of_road_staging"
+route = "demo.lord-of-road.com/*"
+
+[env.production]
+name = "lord_of_road_production"
+route = "lord-of-road.com/*"
